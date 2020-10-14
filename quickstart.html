@@ -11,7 +11,9 @@
     <button id="authorize_button" style="display: none;">Authorize</button>
     <button id="signout_button" style="display: none;">Sign Out</button>
 
-    <pre id="content" style="white-space: pre-wrap;"></pre>
+    <!-- <pre id="content" style="white-space: pre-wrap;"></pre> -->
+    <!-- <h3 id="content"></h3> -->
+    <ul id="content"></ul>
 
     <script type="text/javascript">
       // Client ID and API key from the Developer Console
@@ -93,11 +95,26 @@
        *
        * @param {string} message Text to be placed in pre element.
        */
-      function appendPre(message) {
-        var pre = document.getElementById('content');
+      function appendPre(message, i) {
+// by Igor vvv
+        console.log(message, i);
+        var ulList = document.getElementsByTagName('UL')[0];
+        ulList = document.createElement('li');
+        document.getElementById('content').appendChild(ulList);
+        var pre = document.getElementsByTagName('li')[i];
+
+// by Igor ^^^
+        // var pre = document.getElementById('content');
         var textContent = document.createTextNode(message + '\n');
         pre.appendChild(textContent);
       }
+
+// MyTest <li>
+  // node=document.createElement('li');
+  // document.getElementById('content').appendChild(node);
+//   var ulList = document.getElementsByTagName("UL")[0];
+// list.getElementsByTagName("LI")[0].innerHTML = "Milk";
+
 
       /**
        * Print the summary and start datetime/date of the next ten events in
@@ -114,7 +131,14 @@
           'orderBy': 'startTime'
         }).then(function(response) {
           var events = response.result.items;
-          appendPre('Upcoming events:');
+// by Igor vvv
+          var ulList = document.createElement('p');
+          var textContent = document.createTextNode('Upcoming events kkk');
+          ulList.appendChild(textContent);
+          document.getElementsByTagName('ul')[0].appendChild(ulList);
+// by Igor ^^^
+
+          // appendPre('Upcoming events:');
 
           if (events.length > 0) {
             for (i = 0; i < events.length; i++) {
@@ -123,7 +147,12 @@
               if (!when) {
                 when = event.start.date;
               }
-              appendPre(event.summary + ' (' + when + ')');
+// by Igor vvv
+              var aPre = (event.summary + ' (' + when + ')');
+
+              appendPre(aPre, i);
+// by Igor ^^^
+              // appendPre(event.summary + ' (' + when + ')');
             }
           } else {
             appendPre('No upcoming events found.');
