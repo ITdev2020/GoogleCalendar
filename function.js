@@ -2,12 +2,15 @@
 var CLIENT_ID = '817151676915-l3nn4esbroq5q92n0ko1rrpibrle6fqa.apps.googleusercontent.com';
 var API_KEY = 'AIzaSyA1_SDugEG25dVDMiLwqTXe_r3OA-7MbFQ';
 
-// Array of API discovery doc URLs for APIs used by the quickstart
+// Array of API discovery doc URLs for APIs used by the app
 var DISCOVERY_DOCS = ["https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest"];
 
 // Authorization scopes required by the API; multiple scopes can be
 // included, separated by spaces.
-var SCOPES = "https://www.googleapis.com/auth/calendar.readonly";
+var SCOPES = 'https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.readonly';
+// by Igor vvv
+// var SCOPES = 'https://www.googleapis.com/auth/calendar';
+// by Igor ^^^
 
 var authorizeButton = document.getElementById('authorize_button');
 var signoutButton = document.getElementById('signout_button');
@@ -38,7 +41,9 @@ function initClient() {
     authorizeButton.onclick = handleAuthClick;
     signoutButton.onclick = handleSignoutClick;
   }, function(error) {
-    appendPre(JSON.stringify(error, null, 2));
+// by Igor vvv
+    appendPre(JSON.stringify(error, null, 2), 0);
+// by Igor ^^^
   });
 }
 
@@ -48,10 +53,12 @@ function initClient() {
  */
 function updateSigninStatus(isSignedIn) {
   if (isSignedIn) {
+      console.log("Inside updateSigninStatus-if ..." + isSignedIn);
     authorizeButton.style.display = 'none';
     signoutButton.style.display = 'block';
     listUpcomingEvents();
   } else {
+          console.log("Inside updateSigninStatus-else ..." + isSignedIn);
     authorizeButton.style.display = 'block';
     signoutButton.style.display = 'none';
   }
@@ -68,6 +75,7 @@ function handleAuthClick(event) {
  *  Sign out the user upon button click.
  */
 function handleSignoutClick(event) {
+    console.log("Inside handleSignoutClick ...");
   gapi.auth2.getAuthInstance().signOut();
 }
 
@@ -83,7 +91,6 @@ function appendPre(message, i) {
   ulList = document.createElement('li');
   document.getElementById('events').appendChild(ulList);
   var pre = document.getElementsByTagName('li')[i];
-
 // by Igor ^^^
   var textContent = document.createTextNode(message + '\n');
   pre.appendChild(textContent);
@@ -127,9 +134,9 @@ function listUpcomingEvents() {
 // by Igor ^^^
     }
   });
-}
+};
 
 // by Igor vvv
-var sectGapiStyle = document.getElementsByClassName('gapi')[0].style
+var sectGapiStyle = document.getElementsByClassName('gapi')[0].style;
 sectGapiStyle.position='fixed';
 sectGapiStyle.bottom='100px';

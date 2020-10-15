@@ -13,6 +13,11 @@
       <ul id="events"></ul>
     </section>
 
+    <!-- Event created -->
+    <section>
+      <p class="event-created"></p>
+    </section>
+
     <!-- Buttons to initiate auth sequence and sign out-->
     <section class="gapi">
       <p>Google Calendar API</p>
@@ -20,10 +25,11 @@
       <button id="signout_button" style="display: none;">Sign Out</button>
     </section>
 
-    <script src="function.js"></script>
     <script async defer src="https://apis.google.com/js/api.js"
       onload="this.onload=function(){};handleClientLoad()"
       onreadystatechange="if (this.readyState === 'complete') this.onload()">
     </script>
+    <script src="function.js"></script>
+    <script src="addEvent.js"></script>
   </body>
 </html>
