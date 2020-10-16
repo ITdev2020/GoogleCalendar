@@ -68,6 +68,7 @@ function updateSigninStatus(isSignedIn) {
  *  Sign in the user upon button click.
  */
 function handleAuthClick(event) {
+  console.log("Inside handleAuthClick ..." + event);
   gapi.auth2.getAuthInstance().signIn();
 }
 
@@ -75,7 +76,7 @@ function handleAuthClick(event) {
  *  Sign out the user upon button click.
  */
 function handleSignoutClick(event) {
-    console.log("Inside handleSignoutClick ...");
+  console.log("Inside handleSignoutClick ..." + event);
   gapi.auth2.getAuthInstance().signOut();
 }
 
@@ -87,13 +88,11 @@ function handleSignoutClick(event) {
  */
 function appendPre(message, i) {
 // by Igor vvv
-  var ulList = document.getElementsByTagName('ul')[0];
-  ulList = document.createElement('li');
-  document.getElementById('events').appendChild(ulList);
-  var pre = document.getElementsByTagName('li')[i];
+  liElem = document.createElement('li');
+  document.getElementById('events').appendChild(liElem);
 // by Igor ^^^
   var textContent = document.createTextNode(message + '\n');
-  pre.appendChild(textContent);
+  document.getElementsByTagName('li')[i].appendChild(textContent);
 }
 
 /**
@@ -135,8 +134,3 @@ function listUpcomingEvents() {
     }
   });
 };
-
-// by Igor vvv
-// var sectGapiStyle = document.getElementsByClassName('gapi')[0].style;
-// sectGapiStyle.position='fixed';
-// sectGapiStyle.bottom='100px';
