@@ -1,0 +1,13 @@
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+.gapi {
+  position: fixed;
+  bottom: 100px;
+}
+
+#event-title {
+  resize: none;
+  width: 80%;
+}
