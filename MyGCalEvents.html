@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Google Calendar API</title>
-    <link rel="shortcut icon" href="favicon.ico">
-    <meta charset="utf-8" />
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>My Google Calendar Events</title>
+    <link rel="shortcut icon" href="assets/favicon.ico">
+    <!-- Link Google Font Roboto-->
+		<link href="https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto:wght@300;400&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
 
@@ -11,6 +15,17 @@
     <section>
       <p class="heading"></p>
       <ul id="events"></ul>
+    </section>
+
+    <!-- Event creation form -->
+    <section>
+      <form>
+        <p><label>Select a date: <input type="date" id="date"></label></p>
+        <p><label>Start time: <input type="time" id="start"></label>
+        <label>End time: <input type="time" id="end"></label></p>
+        <p><label>Event title: <textarea id="event-title" placeholder="Event title"></textarea></label></p>
+      </form>
+      <p class="event-created"></p>
     </section>
 
     <!-- Event created -->
@@ -29,7 +44,7 @@
       onload="this.onload=function(){};handleClientLoad()"
       onreadystatechange="if (this.readyState === 'complete') this.onload()">
     </script>
-    <script src="function.js"></script>
-    <script src="addEvent.js"></script>
+    <script src="js/function.js"></script>
+    <script src="js/addEvent.js"></script>
   </body>
 </html>
